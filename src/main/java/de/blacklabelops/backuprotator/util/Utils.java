@@ -34,8 +34,7 @@ public class Utils {
 
 	public static LocalDateTime parseDate(String dateString) {
 		String format = Setting.DATE_FORMAT.getValue();
-		LocalDateTime time = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern(format));
-		return time;
+		return LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern(format));
 	}
 
 	public static boolean isDateInCurrentWeek(LocalDateTime time) {
@@ -64,11 +63,9 @@ public class Utils {
 	}
 
 	public static List<LocalDateTime> getLatestDatesInEachWeek(List<LocalDateTime> allDates) {
-		List<LocalDateTime> requiredDates = new ArrayList<LocalDateTime>();
-		Map<Integer, List<LocalDateTime>> weekMap = new HashMap<Integer, List<LocalDateTime>>();
-		allDates.forEach(d -> {
-			sameDate(weekMap, d, IsoFields.WEEK_OF_WEEK_BASED_YEAR);
-		});
+		List<LocalDateTime> requiredDates = new ArrayList<>();
+		Map<Integer, List<LocalDateTime>> weekMap = new HashMap<>();
+		allDates.forEach(d -> sameDate(weekMap, d, IsoFields.WEEK_OF_WEEK_BASED_YEAR));
 		sortDateMap(requiredDates, weekMap);
 		Collections.sort(requiredDates);
 		return requiredDates;
@@ -84,11 +81,9 @@ public class Utils {
 	}
 
 	public static List<LocalDateTime> getLatestDatesInEachMonth(List<LocalDateTime> allDates) {
-		List<LocalDateTime> requiredDates = new ArrayList<LocalDateTime>();
-		Map<Integer, List<LocalDateTime>> weekMap = new HashMap<Integer, List<LocalDateTime>>();
-		allDates.forEach(d -> {
-			sameDate(weekMap, d, ChronoField.MONTH_OF_YEAR);
-		});
+		List<LocalDateTime> requiredDates = new ArrayList<>();
+		Map<Integer, List<LocalDateTime>> weekMap = new HashMap<>();
+		allDates.forEach(d -> sameDate(weekMap, d, ChronoField.MONTH_OF_YEAR));
 		sortDateMap(requiredDates, weekMap);
 		Collections.sort(requiredDates);
 		return requiredDates;
@@ -101,7 +96,7 @@ public class Utils {
 		if (weekMap.containsKey(offset)) {
 			weekMap.get(offset).add(d);
 		} else {
-			List<LocalDateTime> ds = new ArrayList<LocalDateTime>();
+			List<LocalDateTime> ds = new ArrayList<>();
 			ds.add(d);
 			weekMap.put(offset, ds);
 		}

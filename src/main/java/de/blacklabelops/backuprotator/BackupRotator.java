@@ -54,7 +54,7 @@ public class BackupRotator {
 	}
 
 	private FileHandler createHandler(boolean isSimulation) {
-		FileHandler handler = null;
+		FileHandler handler;
 		if (!Setting.isEmpty(Setting.AWS_ACCESS_KEY.getValue())) {
 			handler = AWSHandler.getInstance(isSimulation);
 		} else {

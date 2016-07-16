@@ -46,7 +46,7 @@ public class AWSHandler implements FileHandler {
 
 	public List<String> listFiles(Bucket bucket) {
 		ObjectListing response = s3Client.listObjects(bucket.getName(), bucket.getPath());
-		List<String> files = new ArrayList<String>();
+		List<String> files = new ArrayList<>();
 		response.getObjectSummaries().forEach(summary -> {
 			String[] arr = summary.getKey().split(SEPARATOR);
 			if (arr.length > 1) {
@@ -60,20 +60,19 @@ public class AWSHandler implements FileHandler {
 	public void copyFile(Bucket srcBucket, Bucket targetBucket, String fileName, Logbook log) {
 		log.addEntry(new FileCopyLogEntry(srcBucket, targetBucket, fileName));
 		if (!simulation) {
-			logger.trace("Not simulation , so moving files from " + srcBucket + " to " + targetBucket);
+			logger.trace("Not simulation , so moving files from {} to {}", srcBucket, targetBucket);
 			s3Client.copyObject(srcBucket.getName(), srcBucket.getPath() + SEPARATOR + fileName, targetBucket.getName(),
 					targetBucket.getPath() + SEPARATOR + fileName);
 		} else {
 			logger.trace("Simulation mode");
-			logger.trace("Moving files from " + srcBucket + " to " + targetBucket);
+			logger.trace("Moving files from {} to {}", srcBucket, targetBucket);
 		}
 	}
 
 	public void moveFile(Bucket srcBucket, Bucket targetBucket, String fileName, Logbook log) {
 		log.addEntry(new FileMoveLogEntry(srcBucket, targetBucket, fileName));
 		if (!simulation) {
-			logger.trace("Not simulation , so moving files from " + srcBucket.getName() + SEPARATOR + srcBucket.getPath()
-					+ " to " + targetBucket);
+			logger.trace("Not simulation , so moving files from {}/{} to {}", srcBucket.getName(), srcBucket.getPath(), targetBucket);
 			CopyObjectResult result = s3Client.copyObject(srcBucket.getName(), srcBucket.getPath() + SEPARATOR + fileName,
 					targetBucket.getName(), targetBucket.getPath() + SEPARATOR + fileName);
 			if (result != null) {
@@ -81,7 +80,7 @@ public class AWSHandler implements FileHandler {
 			}
 		} else {
 			logger.trace("Simulation mode");
-			logger.trace("Moving files from " + srcBucket.getPath() + " to " + targetBucket.getName());
+			logger.trace("Moving files from {} to {}", srcBucket.getPath(), targetBucket.getName());
 		}
 	}
 
@@ -91,7 +90,7 @@ public class AWSHandler implements FileHandler {
 			s3Client.deleteObject(bucket.getName(), bucket.getPath() + SEPARATOR + fileName);
 		} else {
 			logger.trace("Simulation mode");
-			logger.trace("Cleaning up file :" + bucket.getName() + SEPARATOR + bucket.getPath() + SEPARATOR + fileName);
+			logger.trace("Cleaning up file : {}/{}/{}", bucket.getName(), bucket.getPath(), fileName);
 		}
 	}
 

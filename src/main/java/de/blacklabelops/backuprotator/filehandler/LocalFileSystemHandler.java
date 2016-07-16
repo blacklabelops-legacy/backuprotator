@@ -38,7 +38,7 @@ public class LocalFileSystemHandler implements FileHandler {
 
 	@Override
 	public List<String> listFiles(Bucket bucket) {
-		List<String> files = new ArrayList<String>();
+		List<String> files = new ArrayList<>();
 		File sourceFolder = new File(root + bucket.getName(), bucket.getPath());
 		for (File currentFile : sourceFolder.listFiles()) {
 			files.add(currentFile.getName());
@@ -58,7 +58,7 @@ public class LocalFileSystemHandler implements FileHandler {
 		Path target = FileSystems.getDefault()
 				.getPath(makePath(targetBucket.getName(), targetBucket.getPath(), fileName));
 		if (!simulation) {
-			logger.trace("Not simulation , so moving files from " + source + " to " + target);
+			logger.trace("Not simulation , so moving files from {} to {}", source, target);
 			try {
 				Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
@@ -66,7 +66,7 @@ public class LocalFileSystemHandler implements FileHandler {
 				throw new RuntimeException(e);
 			}
 		} else {
-			logger.trace("Simulation mode :Moving files from " + source + " to " + target);
+			logger.trace("Simulation mode :Moving files from {} to {}", source, target);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class LocalFileSystemHandler implements FileHandler {
 		Path target = FileSystems.getDefault()
 				.getPath(makePath(targetBucket.getName(), targetBucket.getPath(), fileName));
 		if (!simulation) {
-			logger.trace("Not simulation , so moving files from " + source + " to " + target);
+			logger.trace("Not simulation , so moving files from {} to {}", source, target);
 			try {
 				Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
@@ -86,7 +86,7 @@ public class LocalFileSystemHandler implements FileHandler {
 				throw new RuntimeException(e);
 			}
 		} else {
-			logger.trace("Simulation mode Moving files from " + source + " to " + target);
+			logger.trace("Simulation mode Moving files from {} to {}", source, target);
 		}
 	}
 
@@ -102,7 +102,7 @@ public class LocalFileSystemHandler implements FileHandler {
 				throw new RuntimeException(e);
 			}
 		} else {
-			logger.trace("Simulation mode Cleaning up file :" + source);
+			logger.trace("Simulation mode Cleaning up file : {}" , source);
 		}
 	}
 

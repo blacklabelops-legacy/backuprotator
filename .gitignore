@@ -26,3 +26,4 @@ local.properties
 /.gradle/**
 backrotator/.gradle/**
 backrotator/build/**
+.idea

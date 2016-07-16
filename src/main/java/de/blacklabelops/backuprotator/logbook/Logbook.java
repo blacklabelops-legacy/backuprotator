@@ -10,7 +10,7 @@ public class Logbook {
 
 	private final static Logger logger = LoggerFactory.getLogger(Logbook.class);
 
-	private List<ILogEntry> entries = new ArrayList<ILogEntry>();
+	private List<ILogEntry> entries = new ArrayList<>();
 
 	public Logbook() {
 	}
@@ -20,9 +20,7 @@ public class Logbook {
 	}
 
 	public void writeLogbookToLog() {
-		entries.forEach(entry -> {
-			logger.info(entry.getMessage());
-		});
+		entries -> logger.info(entry.getMessage());
 	}
 
 }
