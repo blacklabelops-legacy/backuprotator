@@ -28,7 +28,7 @@ public enum Setting {
 
 	private final static Logger logger = LoggerFactory.getLogger(Setting.class);
 
-	private String value = null;
+	private String value;
 
 	private String key;
 
@@ -36,7 +36,7 @@ public enum Setting {
 
 	private boolean required;
 
-	private Setting(String pKey, String pDefaultValue, boolean pRequired) {
+	Setting(String pKey, String pDefaultValue, boolean pRequired) {
 		this.key = pKey;
 		this.defaultValue = pDefaultValue;
 		this.required = pRequired;

@@ -8,9 +8,9 @@ import java.util.Map;
 
 public abstract class AbstractRotator {
 
-	Map<LocalDateTime, String> dataMap = new HashMap<LocalDateTime, String>();
+	Map<LocalDateTime, String> dataMap = new HashMap<>();
 
-	List<LocalDateTime> dates = new ArrayList<LocalDateTime>();
+	List<LocalDateTime> dates = new ArrayList<>();
 
 	public AbstractRotator() {
 		super();

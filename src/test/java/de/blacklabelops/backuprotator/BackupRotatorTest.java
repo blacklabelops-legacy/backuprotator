@@ -32,11 +32,11 @@ public class BackupRotatorTest {
 	String testFolder = root + Setting.DAILY_BUCKET_NAME.getDefaultValue();
 	LocalDateTime testTime = LocalDateTime.of(2015, 12, 20, 0, 0);
 
-	List<String> weeklyFiles = new ArrayList<String>();
-	List<String> dailyFiles = new ArrayList<String>();
-	List<String> monthlyFiles = new ArrayList<String>();
-	List<String> yearlyFiles = new ArrayList<String>();
-	List<String> testFiles = new ArrayList<String>();
+	List<String> weeklyFiles = new ArrayList<>();
+	List<String> dailyFiles = new ArrayList<>();
+	List<String> monthlyFiles = new ArrayList<>();
+	List<String> yearlyFiles = new ArrayList<>();
+	List<String> testFiles = new ArrayList<>();
 
 	@Before
 	public void buildUp() throws IOException {
@@ -109,9 +109,9 @@ public class BackupRotatorTest {
 		Setting.SIMULATION_MODE.setValue("false");
 		BackupRotator rotator = BackupRotator.getInstance();
 		rotator.startBackupRotation();
-		weeklyFiles.forEach(filename -> assertFileMovedToWeekly(filename));
-		monthlyFiles.forEach(filename -> assertFileMovedToMonthly(filename));
-		yearlyFiles.forEach(filename -> assertFileMovedToYearly(filename));
+		weeklyFiles.forEach(this::assertFileMovedToWeekly);
+		monthlyFiles.forEach(this::assertFileMovedToMonthly);
+		yearlyFiles.forEach(this::assertFileMovedToYearly);
 	}
 
 	private void assertFileMovedToWeekly(String filename) {
@@ -201,7 +201,7 @@ public class BackupRotatorTest {
 	}
 
 	private Collection<? extends String> createMonthlyTestFiles() {
-		List<String> testFiles = new ArrayList<String>();
+		List<String> testFiles = new ArrayList<>();
 		String monthlyFile = "JenkinsBackupV1-2015-01-07-00-15-02.tar.gz.gpg";
 		testFiles.add(monthlyFile);
 		monthlyFile = "JenkinsBackupV1-2015-01-08-00-15-02.tar.gz.gpg";
@@ -216,7 +216,7 @@ public class BackupRotatorTest {
 	}
 
 	private Collection<? extends String> createYearlyTestfiles() {
-		List<String> testFiles = new ArrayList<String>();
+		List<String> testFiles = new ArrayList<>();
 		testFiles.add("JenkinsBackupV1-2014-05-31-00-15-02.tar.gz.gpg");
 		yearlyFiles.addAll(testFiles);
 		return testFiles;

@@ -68,9 +68,9 @@ public class UtilsTest {
 	@Test
 	public void testGetLatestDatesInWeek() {
 		Locale.setDefault(Locale.UK);
-		List<LocalDateTime> allDates = new ArrayList<LocalDateTime>();
-		List<LocalDateTime> latestDates = new ArrayList<LocalDateTime>();
-		LocalDateTime cal = null;
+		List<LocalDateTime> allDates = new ArrayList<>();
+		List<LocalDateTime> latestDates = new ArrayList<>();
+		LocalDateTime cal;
 		cal = LocalDateTime.of(2016, 7, 4, 0, 0);
 		allDates.add(cal);
 		cal = LocalDateTime.of(2016, 7, 7, 0, 0);
@@ -90,8 +90,8 @@ public class UtilsTest {
 
 	@Test
 	public void testGetLatestDatesInMonth() {
-		List<LocalDateTime> allDates = new ArrayList<LocalDateTime>();
-		List<LocalDateTime> latestDates = new ArrayList<LocalDateTime>();
+		List<LocalDateTime> allDates = new ArrayList<>();
+		List<LocalDateTime> latestDates = new ArrayList<>();
 		LocalDateTime cal = LocalDateTime.of(2016, 7, 4, 0, 0);
 		allDates.add(cal);
 		cal = LocalDateTime.of(2016, 7, 7, 0, 0);
