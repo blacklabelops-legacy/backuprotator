@@ -1,0 +1,62 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'io.spring.dependency-management'
+
+mainClassName = 'de.blacklabelops.backuprotator.Main'
+version = '0.1.0'
+
+manifest {
+    attributes 'Main-Class': mainClassName
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE"
+        classpath 'eu.appsatori:gradle-fatjar-plugin:0.3'
+    }
+}
+
+dependencies {
+  compile 'log4j:log4j:1.2.17'
+  compile 'org.slf4j:slf4j-log4j12:1.7.18'
+  compile 'com.amazonaws:aws-java-sdk-s3'
+  testCompile 'junit:junit:4.12'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.10.47'
+    }
+}
+
+jar {
+    baseName = rootProject.name
+    version =  version
+    manifest {
+        attributes 'Implementation-Title': 'AWS Backup Rotator',
+                   'Implementation-Version': project.version,
+                   'Main-Class': mainClassName,
+                   'Class-Path': configurations.runtime.files.collect { it.name }.join(' ')
+    }
+}
+
+task fatJar(type: Jar) {
+    baseName = rootProject.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+    manifest {
+        attributes 'Implementation-Title': 'AWS Backup Rotator', 'Implementation-Version': project.version
+        attributes 'Main-Class': mainClassName
+    }
+}
