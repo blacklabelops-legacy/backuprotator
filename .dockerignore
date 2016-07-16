@@ -1,0 +1,10 @@
+.git
+build/distributions
+build/classes
+build/dependency-cache
+build/reports
+build/scripts
+build/tmp
+src
+.gradle
+README.md

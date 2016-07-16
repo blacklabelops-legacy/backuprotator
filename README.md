@@ -127,7 +127,6 @@ $ docker run \
 $ java -jar /backrotator-all.jar
 ~~~~
 
-
 ## Running With All Environment Variables
 
 ~~~~
@@ -148,4 +147,20 @@ $ docker run \
     -e 'BACKUPROTATOR_DATE_FORMAT=yyyy-MM-dd-HH-mm-ss' \
     -it --rm -v $(pwd)/build/libs/backrotator-all.jar:/backrotator-all.jar blacklabelops/java bash
 $ java -jar /backrotator-all.jar
+~~~~
+
+## Running Dockerfile
+
+~~~~
+$ docker build -t blacklabelops/backuprotator .
+$ docker run \
+    -e 'BACKUPROTATOR_SIMULATION_MODE=true' \
+    -e 'BACKUPROTATOR_AWS_ACCESS_KEY=YOUR_KEY' \
+    -e 'BACKUPROTATOR_AWS_SECRET_KEY=YOUR_SECRET_KEY' \
+    -e 'BACKUPROTATOR_AWS_REGION=eu-central-1' \
+    -e "JOB_NAME1=Backup Rotation" \
+    -e "JOB_COMMAND1=java -jar /opt/backuprotator/backrotator-all.jar" \
+    -e "JOB_TIME1=0 0 2 * * *" \
+    -e "JOB_ON_ERROR1=Continue" \
+    blacklabelops/backuprotator
 ~~~~
