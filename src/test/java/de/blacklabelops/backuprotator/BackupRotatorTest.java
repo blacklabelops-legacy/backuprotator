@@ -188,7 +188,7 @@ public class BackupRotatorTest {
 	}
 
 	private Collection<? extends String> createWeeklyTestFiles() {
-		List<String> testFiles = new ArrayList<String>();
+		List<String> testFiles = new ArrayList<>();
 		testFiles.add("JenkinsBackupV1-2015-12-07-00-15-02.tar.gz.gpg");
 		testFiles.add("JenkinsBackupV1-2015-12-08-00-15-02.tar.gz.gpg");
 		testFiles.add("JenkinsBackupV1-2015-12-09-00-15-02.tar.gz.gpg");
