@@ -20,7 +20,7 @@ public class Logbook {
 	}
 
 	public void writeLogbookToLog() {
-		entries.forEach(entry - > logger.info(entry.getMessage()));
+		entries.forEach(entry -> logger.info(entry.getMessage()));
 	}
 
 }
