@@ -23,8 +23,8 @@ public class MonthlyRotator extends AbstractRotator {
 		handler.listFiles(monthlyBucket).stream().filter(filename -> Utils.parseFilename(filename) != null)
 				.forEach(filename -> {
 					LocalDateTime d = Utils.parseFilename(filename);
-					boolean isInCurrentMonth = Utils.isDateInCurrentYear(d);
-					if (!isInCurrentMonth) {
+					boolean isInCurrentYear = Utils.isDateInCurrentYear(d);
+					if (!isInCurrentYear) {
 						dataMap.put(d, filename);
 						dates.add(d);
 					}
