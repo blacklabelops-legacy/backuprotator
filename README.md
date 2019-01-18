@@ -164,7 +164,3 @@ $ docker run \
     -e "JOB_ON_ERROR1=Continue" \
     blacklabelops/backuprotator
 ~~~~
-
-# Support
-
-Leave a message and ask questions on Hipchat: [blacklabelops/hipchat](http://support.blacklabelops.com)
